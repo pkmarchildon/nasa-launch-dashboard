@@ -6,15 +6,21 @@ on:
     branches: [main]
 jobs:
   build:
+    env:
+      CI: true #specifies we are in the CI environment and will disable the watch mode for our tests.
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x] #will ensure that our code works with node.js version 14(latest) and 16(latest). it will create 2 jobs.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 #action built-in github. we specify the version we are using with @v...
-      - name: Use Node.js version 16
+      - name: Use Node.js version ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: ${{ matrix.node-version }} #specifies we are using the variable from our strategy
       - run: npm install
       - run: npm run build --prefix client
+      - run: npm run test
 # if we want the build job to run before deploying:
 # jobs:
 #build:
