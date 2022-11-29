@@ -1,0 +1,22 @@
+name: NASA Project CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 #action built-in github. we specify the version we are using with @v...
+      - name: Use Node.js version 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm install
+      - run: npm build --prefix client
+# if we want the build job to run before deploying:
+# jobs:
+#build:
+#deploy:
+#needs: build
