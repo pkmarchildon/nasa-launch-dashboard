@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x] #will ensure that our code works with node.js version 14(latest) and 16(latest). it will create 2 jobs.
-        mongodb-version: ['5.0.14']
+        mongodb-version: [5.0.14]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 #action built-in github. we specify the version we are using with @v...
