@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-const MONGO_URL =
-  'mongodb+srv://pk:bonbon12@cluster0.sguocfw.mongodb.net/?retryWrites=true&w=majority';
-
 mongoose.connection.once('open', () => {
   console.log('MongoDB connection ready.');
 });
@@ -12,7 +9,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 async function mongoConnect() {
-  await mongoose.connect(MONGO_URL, {
+  await mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
