@@ -1,4 +1,9 @@
-const API_URL = 'http://localhost:3001/v1';
+/*
+  Était 'http://localhost:3001/v1'
+  En laissant seulement v1, le client sait qu'il doit faire ses requêtes à l'API qui est servi à la même adresse et origine.
+
+*/
+const API_URL = 'v1';
 
 // Load planets and return as JSON.
 async function httpGetPlanets() {
